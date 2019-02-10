@@ -30,7 +30,7 @@ Description: path to write the client config to
 
 Type: `string`
 
-Default: `"/dev/null"`
+Default: `""`
 
 ### validity
 

@@ -20,5 +20,5 @@ variable "client_subject" {
 
 variable "cert_path" {
   description = "path to write the client config to"
-  default     = "/dev/null"
+  default     = ""
 }
