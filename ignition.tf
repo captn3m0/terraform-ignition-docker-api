@@ -1,24 +1,27 @@
 // Certs
-resource "ignition_file" "ca-cert" {
-  path = "/etc/docker/ca.pem"
-  mode = 420
+data "ignition_file" "ca-cert" {
+  filesystem = "root"
+  path       = "/etc/docker/ca.pem"
+  mode       = 420
 
   content {
-    content = "${tls_locally_signed_cert.ca-cert.cert_pem}"
+    content = "${tls_self_signed_cert.ca-cert.cert_pem}"
   }
 }
 
-resource "ignition_file" "server-cert" {
-  path = "/etc/docker/server.pem"
-  mode = 420
+data "ignition_file" "server-cert" {
+  filesystem = "root"
+  path       = "/etc/docker/server.pem"
+  mode       = 420
 
   content {
     content = "${tls_locally_signed_cert.server-cert.cert_pem}"
   }
 }
 
-resource "ignition_file" "server-key" {
-  path = "/etc/docker/server-key.pem"
+data "ignition_file" "server-key" {
+  filesystem = "root"
+  path       = "/etc/docker/server-key.pem"
 
   // Decimal 384 = Octal 600
   mode = 384
@@ -49,14 +52,14 @@ EOF
 data "ignition_systemd_unit" "docker-api" {
   name = "docker.service"
 
-  dropins = {
+  dropin = [{
     name = "20-clct-docker.conf"
 
     content = <<EOF
 [Service]
 Environment="DOCKER_OPTS=--tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server.pem --tlskey=/etc/docker/server-key.pem"
 EOF
-  }
+  }]
 }
 
 // Final Config

@@ -17,3 +17,8 @@ variable "client_subject" {
   description = "The subject block for the Client certificate. See https://www.terraform.io/docs/providers/tls/r/cert_request.html#subject for details"
   type        = "map"
 }
+
+variable "cert_path" {
+  description = "path to write the client config to"
+  default     = "/dev/null"
+}
