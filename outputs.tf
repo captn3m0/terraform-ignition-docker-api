@@ -17,3 +17,15 @@ output "client-key" {
   value       = "${tls_private_key.client-key.private_key_pem}"
   description = "PEM encoded client key, used to authenticate to the server"
 }
+
+output "ca_cert" {
+  value = "${local_file.ca.content}"
+}
+
+output "client_cert" {
+  value = "${local_file.cert.content}"
+}
+
+output "client_key" {
+  value = "${local_file.key.content}"
+}
