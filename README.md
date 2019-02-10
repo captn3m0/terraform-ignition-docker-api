@@ -1,71 +1,13 @@
-# terraform-ignition-docker-api
+# terraform-ignition-docker-api ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Terraform Configuration using the Ignition Provider to setup a Docker API endpoint.
 
 This generates the certs, and returns them as output. This is based on the official
-[CoreOS documentation][docs]:
+[CoreOS documentation][docs].
 
-[docs]: https://coreos.com/os/docs/latest/customizing-docker.html#enable-the-remote-api-with-tls-authentication
+You can see the inputs and outputs at the [Terraform Registry](https://registry.terraform.io/modules/captn3m0/docker-api/ignition/) or [MODULE.md](MODULE.md).
 
-## Required Inputs
+## License
 
-The following input variables are required:
-
-### ca\_subject
-
-Description: The subject block for the CA certificate. See https://www.terraform.io/docs/providers/tls/r/cert_request.html#subject for details
-
-Type: `map`
-
-### client\_subject
-
-Description: The subject block for the Client certificate. See https://www.terraform.io/docs/providers/tls/r/cert_request.html#subject for details
-
-Type: `map`
-
-### server\_subject
-
-Description: The subject block for the server certificate. This should be the hostname of the server. See https://www.terraform.io/docs/providers/tls/r/cert_request.html#subject for details
-
-Type: `map`
-
-## Optional Inputs
-
-The following input variables are optional (have default values):
-
-### cert\_path
-
-Description: path to write the client config to
-
-Type: `string`
-
-Default: `"/dev/null"`
-
-### validity
-
-Description: certificate validity in days, defaults to 365
-
-Type: `string`
-
-Default: `"365"`
-
-## Outputs
-
-The following outputs are exported:
-
-### ca-cert
-
-Description: PEM encoded CA Certificate, used for signing both the server and the client certs
-
-### client-cert
-
-Description: PEM encoded client certificate, used to authenticate to the server
-
-### client-key
-
-Description: PEM encoded client key, used to authenticate to the server
-
-### config
-
-Description: Rendered ignition configuration. Can be used in a append block, or passed as userdata
+Licensed under the [MIT License](https://nemo.mit-license.org/). See LICENSE file for details.
 
