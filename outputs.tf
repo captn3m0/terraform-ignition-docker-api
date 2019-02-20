@@ -17,3 +17,13 @@ output "client-key" {
   value       = "${tls_private_key.client-key.private_key_pem}"
   description = "PEM encoded client key, used to authenticate to the server"
 }
+
+output "source" {
+  description = "Ready data-uri based source to inser into a append or replace block"
+  value       = "data:text/plain;charset=utf-8;base64,${base64encode(data.ignition_config.main.rendered)}"
+}
+
+output "verification" {
+  description = "Verification hash for the userdata"
+  value       = "sha512-${sha512(data.ignition_config.main.rendered)}"
+}

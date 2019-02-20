@@ -48,10 +48,6 @@ The following outputs are exported:
 
 Description: PEM encoded CA Certificate, used for signing both the server and the client certs
 
-### ca\_cert
-
-Description:
-
 ### client-cert
 
 Description: PEM encoded client certificate, used to authenticate to the server
@@ -60,15 +56,15 @@ Description: PEM encoded client certificate, used to authenticate to the server
 
 Description: PEM encoded client key, used to authenticate to the server
 
-### client\_cert
-
-Description:
-
-### client\_key
-
-Description:
-
 ### config
 
 Description: Rendered ignition configuration. Can be used in a append block, or passed as userdata
+
+### source
+
+Description: Ready data-uri based source to inser into a append or replace block
+
+### verification
+
+Description: Verification hash for the userdata
 
